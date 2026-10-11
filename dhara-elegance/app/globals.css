@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme — the storefront default */
+    --background: 40 33% 98%;        /* cream */
+    --foreground: 220 55% 16%;       /* navy */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 55% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 55% 16%;
+
+    --primary: 220 55% 16%;          /* navy */
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 46 60% 55%;         /* gold */
+    --secondary-foreground: 220 55% 16%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 220 15% 40%;
+
+    --accent: 46 68% 66%;            /* light gold */
+    --accent-foreground: 220 55% 16%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 32%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 55% 16%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 220 55% 16%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Reserved for the admin portal's optional dark surfaces */
+    --background: 220 55% 9%;
+    --foreground: 40 33% 96%;
+
+    --card: 220 45% 12%;
+    --card-foreground: 40 33% 96%;
+
+    --popover: 220 45% 12%;
+    --popover-foreground: 40 33% 96%;
+
+    --primary: 46 60% 55%;
+    --primary-foreground: 220 55% 9%;
+
+    --secondary: 220 40% 20%;
+    --secondary-foreground: 40 33% 96%;
+
+    --muted: 220 30% 16%;
+    --muted-foreground: 220 15% 70%;
+
+    --accent: 46 68% 66%;
+    --accent-foreground: 220 55% 9%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 45% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 85% 55%;
+    --warning-foreground: 220 55% 9%;
+
+    --border: 220 30% 20%;
+    --input: 220 30% 20%;
+    --ring: 46 60% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-navy;
+  }
+
+  /* Respect prefers-reduced-motion globally as a floor; the motion
+     system in components/motion additionally checks this at the
+     component level for anything more elaborate than a fade. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-editorial {
+    @apply container mx-auto max-w-[1440px];
+  }
+
+  .text-gradient-gold {
+    @apply bg-gold-sheen bg-clip-text text-transparent;
+  }
+
+  /* Frosted glass surface used sparingly over imagery */
+  .glass-navy {
+    @apply border border-white/10 bg-navy/60 backdrop-blur-md;
+  }
+
+  .glass-cream {
+    @apply border border-navy/10 bg-white/70 backdrop-blur-md;
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.15) 37%,
+      hsl(var(--muted)) 63%
+    );
+    background-size: 400% 100%;
+    @apply animate-shimmer;
+  }
+}
